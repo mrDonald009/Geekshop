@@ -1,7 +1,6 @@
 from django.shortcuts import render
-
-from django.http import HttpResponse
 import datetime
+
 # функции = вьюхи = контроллеры
 
 def index(request):
@@ -21,6 +20,7 @@ def products(request):
             {'name': 'Черные туфли на платформе с 3 парами люверсов Dr Martens 1461 Bex', 'price': '13 590,00', 'img': 'vendor/img/products/Black-Dr-Martens-shoes.png', 'description': 'Гладкий кожаный верх. Натуральный материал'},
             {'name': 'Темно-синие широкие строгие брюки ASOS DESIGN', 'price': '2 890,00', 'img': 'vendor/img/products/Dark-blue-wide-leg-ASOs-DESIGN-trousers.png', 'description': 'Легкая эластичная ткань сирсакер Фактурная ткань.'},
         ],
+        'now': datetime.datetime.now(),
     }
     return render(request, 'mainapp/products.html', context)
 
@@ -43,7 +43,3 @@ def test_context(request):
     }
     return render(request, 'mainapp/test-context.html', context)
 
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)

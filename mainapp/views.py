@@ -42,4 +42,3 @@ def test_context(request):
         ],
     }
     return render(request, 'mainapp/test-context.html', context)
-

@@ -15,6 +15,7 @@ class UserLoginForm(AuthenticationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
 
+
 class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
@@ -27,7 +28,6 @@ class UserRegisterForm(UserCreationForm):
         self.fields['first_name'].widget.attrs['placeholder'] = 'Введите имя'
         self.fields['last_name'].widget.attrs['placeholder'] = 'Введите фамилию'
         self.fields['password1'].widget.attrs['placeholder'] = 'Введите пароль'
-        self.fields['passowrd2'].widget.attrs['placeholder'] = 'Подтвердите пароль'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Подтвердите пароль'
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
-

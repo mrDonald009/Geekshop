@@ -33,7 +33,6 @@ class UserRegisterForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control py-4'
 
 class UserProfileForm(UserChangeForm):
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'avatar', 'username', 'email')

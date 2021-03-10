@@ -45,15 +45,16 @@ def logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 def profile(request):
+    user = request.user
     if request.method == 'POST':
-        form = UserProfileForm(data=request.POST, files=request.FILES, istance=request.user)
+        form = UserProfileForm(data=request.POST, files=request.FILES, istance=user)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('auth:profile'))
     else:
-        form = UserProfileForm(instance=request.user)
+        form = UserProfileForm(instance=user)
     context = {
         'form': form,
-        'baskets': Basket.objects.all(),
+        'baskets': Basket.objects.filter(user=user),
     }
     return render(request, 'authapp/profile.html', context)

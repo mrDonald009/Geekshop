@@ -47,14 +47,24 @@ def logout(request):
 def profile(request):
     user = request.user
     if request.method == 'POST':
-        form = UserProfileForm(data=request.POST, files=request.FILES, istance=user)
+        form = UserProfileForm(data=request.POST, files=request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('auth:profile'))
     else:
         form = UserProfileForm(instance=user)
+    baskets = Basket.objects.filter(user=user)
+    total_quantity = sum(basket.quantity for basket in baskets)
+    total_sum = sum(basket.sum() for basket in baskets)
+    # total_quantity = 0
+    # total_sum = 0
+    # for basket in baskets:
+    #     total_quantity += basket.quantity
+    #     total_sum += basket.sum()
     context = {
         'form': form,
-        'baskets': Basket.objects.filter(user=user),
+        'baskets': baskets,
+        'total_quantity': total_quantity,
+        'total_sum': total_sum,
     }
     return render(request, 'authapp/profile.html', context)

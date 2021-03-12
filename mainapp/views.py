@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime
 from mainapp.models import Product, ProductCategory
 
+
 # функции = вьюхи = контроллеры
 
 def index(request):

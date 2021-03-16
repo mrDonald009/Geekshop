@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from authapp.models import User
 
 def index(request):
     return render(request, 'adminapp/index.html')
@@ -7,7 +8,8 @@ def index(request):
 
 # Read
 def admin_users(request):
-    return render(request, 'adminapp/admin-users-read.html')
+    context = {'users': User.objects.all()}
+    return render(request, 'adminapp/admin-users-read.html', context)
 
 # Create
 def admin_users_create(request):

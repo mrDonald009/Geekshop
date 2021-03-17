@@ -33,6 +33,7 @@ class UserRegisterForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
 
+
 class UserProfileForm(UserChangeForm):
     avatar = forms.ImageField(widget=forms.FileInput(), required=False)
 

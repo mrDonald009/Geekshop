@@ -1,13 +1,11 @@
 {% extends 'authapp/base.html' %}
-{% load staticfiles %}
 
-
-{% block form %}
+{% block content %}
     <div class="col-lg-7">
         {% if form.errors %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert"
                  style="margin-top: 50px;">
-                {{ form.errors }}
+                {{ form.errors|escape }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,8 +20,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1"
-                                       for="{{ form.first_name.id_for_label }}">Имя</label>
+                                <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
                                 {{ form.first_name }}
                             </div>
                         </div>
@@ -40,8 +37,7 @@
                             {{ form.username }}
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес
-                                электронной
+                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
                                 почты</label>
                             {{ form.email }}
                         </div>
@@ -49,8 +45,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1"
-                                       for="{{ form.password1.id_for_label }}">Пароль</label>
+                                <label class="small mb-1" for="{{ form.password1.id_for_label }}">Пароль</label>
                                 {{ form.password1 }}
                             </div>
                         </div>
@@ -68,8 +63,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <div class="small"><a href="{% url 'auth:login' %}">Уже есть аккаунт? Авторизоваться</a>
-                </div>
+                <div class="small"><a href="{% url 'auth:login' %}">Уже есть аккаунт? Авторизоваться</a></div>
             </div>
         </div>
     </div>
